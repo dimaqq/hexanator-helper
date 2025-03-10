@@ -20,8 +20,10 @@ class HexanatorHelperCharm(ops.CharmBase):
         self.framework.observe(self.on.send_ca_cert_relation_created, self._on_send_ca_cert_changed)
 
     def _on_charm_tracing_changed(self, event: ops.RelationCreatedEvent):
+        if not self.unit.is_leader():
+            return
         relation = event.relation
-        relation.data[self.unit]["receivers"] = json.dumps([
+        relation.data[self.app]["receivers"] = json.dumps([
             {
                 "protocol": {"name": "otlp_http", "type": "http"},
                 "url": URL,
@@ -30,8 +32,10 @@ class HexanatorHelperCharm(ops.CharmBase):
         logging.info("Set tracing destination data on relation %s", relation.id)
 
     def _on_send_ca_cert_changed(self, event: ops.RelationCreatedEvent):
+        if not self.unit.is_leader():
+            return
         relation = event.relation
-        relation.data[self.unit]["certificates"] = json.dumps(["FIXME--CERT", "FIXME--CERT"])
+        relation.data[self.app]["certificates"] = json.dumps(["FIXME--CERT", "FIXME--CERT"])
         logging.info("Set CA certificates on relation %s", relation.id)
 
 
