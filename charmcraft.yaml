@@ -1,0 +1,26 @@
+---
+name: hexanator-helper
+type: charm
+title: Helper relations for hexanator
+summary: ...
+description: ...
+
+# charmcraft 3.0
+base: ubuntu@24.04
+build-base: ubuntu@24.04
+platforms:
+    amd64:
+    arm64:
+
+parts:
+  charm:
+    plugin: charm
+    source: .
+
+provides:
+    charm-tracing:
+        interface: tracing
+        optional: true
+    send-ca-cert:
+        interface: certificate_transfer
+        optional: true
