@@ -1,0 +1,8 @@
+[project]
+name = "hexanator-helper"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.8"
+dependencies = [
+    "ops>=2.19.4",
+]

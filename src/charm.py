@@ -8,7 +8,7 @@ import ops
 
 # NOTE: adjust to your local environment
 # the ip address is what process in a pod can use to access the vm
-URL="http://192.168.107.4:4318/v1/traces"
+URL="http://192.168.107.3:4318/v1/traces"
 
 
 class HexanatorHelperCharm(ops.CharmBase):
